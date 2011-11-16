@@ -2,6 +2,7 @@ bin/python*
 bin/easy_install*
 bin/pip*
 bin/activate*
+bin/python*
 setuptools-*.egg
 pip-*.egg
 setuptools.pth

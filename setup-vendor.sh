@@ -22,6 +22,7 @@ if [ ! -e "$basedir/vendor/.gitignore" ] ; then
 bin/easy_install*
 bin/pip*
 bin/activate*
+bin/python*
 setuptools-*.egg
 pip-*.egg
 setuptools.pth
@@ -54,17 +55,5 @@ rmdir build-env/lib/python$pyversion/orig-site-packages
 echo "[install]
 install_platlib = $basedir/vendor/binary-libs
 " >> build-env/lib/python2.7/distutils/distutils.cfg
-
-# Note, you should ignore:
-#  vendor/bin/python*
-#  vendor/bin/easy_install*
-#  vendor/bin/pip*
-#  vendor/bin/activate*
-#  vendor/setuptools-*.egg
-#  vendor/pip-*.egg
-#  vendor/setuptools.pth
-# Scripts in bin/ may need fixing up
-
-# pip -E build-env install -r reqs.txt
 
 echo "done."
