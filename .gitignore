@@ -3,6 +3,7 @@ bin/easy_install*
 bin/pip*
 bin/activate*
 bin/python*
+bin/coverage
 setuptools-*.egg
 distribute-*.egg
 pip-*.egg
