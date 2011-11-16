@@ -5,3 +5,4 @@ bin/activate*
 setuptools-*.egg
 pip-*.egg
 setuptools.pth
+binary-libs

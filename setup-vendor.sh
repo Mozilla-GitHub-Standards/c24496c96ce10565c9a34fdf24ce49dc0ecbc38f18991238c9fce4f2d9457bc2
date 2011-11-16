@@ -11,10 +11,29 @@ if [ ! -e "$basedir/vendor/setup-vendor.sh" ] || [ ! -e "$basedir/setup.py" ] ; 
   exit 1
 fi
 
+if [ ! -d "$basedir/vendor/bin" ] ; then
+  echo "Creating vendor/bin/ dirrectory"
+  mkdir "$basedir/vendor/bin"
+fi
+
+if [ ! -e "$basedir/vendor/.gitignore" ] ; then
+  echo "Creating vendor/.gitignore file"
+  echo 'bin/python*   
+bin/easy_install*
+bin/pip*
+bin/activate*
+setuptools-*.egg
+pip-*.egg
+setuptools.pth
+binary-libs
+' > "$basedir/vendor/.gitignore"
+fi
+
 cd $basedir
+echo "Recreating virtualenv environment"
 rm -rf build-env
 rm -rf vendor/setuptools-*.egg vendor/pip-*.egg
-virtualenv --python python$pyversion --no-site-packages build-env
+virtualenv -q --python python$pyversion --no-site-packages build-env
 # Move the default site-packages out of the way
 mv build-env/lib/python$pyversion/site-packages/ build-env/lib/python$pyversion/orig-site-packages
 # Symlink vendor/ to site-packages
@@ -31,6 +50,10 @@ rmdir build-env/lib/python$pyversion/orig-site-packages
  mv bin-orig/* bin/
  rmdir bin-orig
 )
+# Use platlib to keep binary packages out
+echo "[install]
+install_platlib = $basedir/vendor/binary-libs
+" >> build-env/lib/python2.7/distutils/distutils.cfg
 
 # Note, you should ignore:
 #  vendor/bin/python*
@@ -42,6 +65,6 @@ rmdir build-env/lib/python$pyversion/orig-site-packages
 #  vendor/setuptools.pth
 # Scripts in bin/ may need fixing up
 
-#pip -E build-env install --install-option="--install-platlib=$(pwd)/vendor/binary-libs" -r prod-reqs.txt
-    
+# pip -E build-env install -r reqs.txt
 
+echo "done."
