@@ -31,7 +31,7 @@ binary-libs
 fi
 
 if [ ! -e "$basedir/vendor/binary-libs.pth" ] ; then
-  echo binary-libs > $basedir/vendor/binary-libs.pth
+  echo 'import site, os; site.addsitedir(os.path.join(os.path.dirname(__file__), "site-packages/binary-libs"))' > $basedir/vendor/binary-libs.pth
 fi
 
 cd $basedir
