@@ -30,6 +30,10 @@ binary-libs
 ' > "$basedir/vendor/.gitignore"
 fi
 
+if [ ! -e "$basedir/vendor/binary-libs.pth" ] ; then
+  echo binary-libs > $basedir/vendor/binary-libs.pth
+fi
+
 cd $basedir
 echo "Recreating virtualenv environment"
 rm -rf build-env
