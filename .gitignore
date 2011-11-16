@@ -4,6 +4,7 @@ bin/pip*
 bin/activate*
 bin/python*
 setuptools-*.egg
+distribute-*.egg
 pip-*.egg
 setuptools.pth
 binary-libs

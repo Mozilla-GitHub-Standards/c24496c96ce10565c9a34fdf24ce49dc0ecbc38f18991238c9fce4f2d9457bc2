@@ -1,0 +1,26 @@
+Metadata-Version: 1.0
+Name: mozsvc
+Version: 0.1
+Summary: Various utilities for Mozilla apps
+Home-page: https://github.com/mozilla-services/mozservices
+Author: Mozilla Services
+Author-email: services-dev@mozilla.org
+License: UNKNOWN
+Description: ======
+        MozSvc
+        ======
+        
+        Various utilities for Pyramid-based Mozilla applicaltions
+        
+        
+        0.1 - 2011-11-15
+        ================
+        
+        Initial release.
+        
+Keywords: web pyramid pylons
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pylons
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
