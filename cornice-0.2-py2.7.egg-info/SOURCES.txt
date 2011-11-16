@@ -1,0 +1,17 @@
+CHANGES.txt
+MANIFEST.in
+README.txt
+setup.cfg
+setup.py
+cornice/__init__.py
+cornice/service.py
+cornice/sphinxext.py
+cornice/util.py
+cornice.egg-info/PKG-INFO
+cornice.egg-info/SOURCES.txt
+cornice.egg-info/dependency_links.txt
+cornice.egg-info/not-zip-safe
+cornice.egg-info/requires.txt
+cornice.egg-info/top_level.txt
+cornice/tests/__init__.py
+cornice/tests/test_util.py

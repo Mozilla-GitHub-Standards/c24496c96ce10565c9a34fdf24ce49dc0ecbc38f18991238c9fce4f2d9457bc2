@@ -1,0 +1,17 @@
+../zope/deprecation/tests.py
+../zope/deprecation/deprecation.py
+../zope/deprecation/__init__.py
+../zope/deprecation/fixture.py
+../zope/deprecation/tests.pyc
+../zope/deprecation/deprecation.pyc
+../zope/deprecation/__init__.pyc
+../zope/deprecation/fixture.pyc
+./
+requires.txt
+not-zip-safe
+top_level.txt
+PKG-INFO
+dependency_links.txt
+SOURCES.txt
+namespace_packages.txt
+../zope.deprecation-3.5.0-py2.7-nspkg.pth

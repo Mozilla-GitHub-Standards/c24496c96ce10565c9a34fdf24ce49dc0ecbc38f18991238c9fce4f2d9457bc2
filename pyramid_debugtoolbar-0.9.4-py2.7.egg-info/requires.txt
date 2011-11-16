@@ -1,0 +1,3 @@
+pyramid>=1.2dev
+pyramid_jinja2>=1.1
+Pygments

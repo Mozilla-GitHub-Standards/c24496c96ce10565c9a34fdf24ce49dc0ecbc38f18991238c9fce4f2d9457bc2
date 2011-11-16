@@ -1,0 +1,13 @@
+../repoze/lru/tests.py
+../repoze/lru/__init__.py
+../repoze/lru/tests.pyc
+../repoze/lru/__init__.pyc
+./
+not-zip-safe
+top_level.txt
+entry_points.txt
+PKG-INFO
+dependency_links.txt
+SOURCES.txt
+namespace_packages.txt
+../repoze.lru-0.4-py2.7-nspkg.pth

@@ -1,0 +1,43 @@
+{% if renderings %}
+{% for rendering in renderings %}
+<table>
+	<thead>
+		<tr>
+			<th colspan="2">Renderer Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="pDebugOdd">
+			<td colspan="2">{{ rendering.name|escape }}</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2">Rendering Value</th>
+		</tr>
+	</thead>
+	<tbody>	
+		<tr class="pDebugOdd">
+			<td colspan="2">{{ rendering.val|escape }}</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2">System Values</th>
+		</tr>
+	</thead>
+	<tbody>	
+		{% for key, value in rendering.system %}
+		<tr class="{{ loop.cycle('pDebugOdd', 'pDebugEven') }}">
+			<td>{{ key|escape }}</td>
+			<td>{{ value|escape }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endfor %}
+{% else %}
+<p>No renderings performed.</p>
+{% endif %}
+
+
