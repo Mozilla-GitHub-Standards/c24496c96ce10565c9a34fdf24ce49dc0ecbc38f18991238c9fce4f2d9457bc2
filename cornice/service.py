@@ -33,7 +33,20 @@
 # the terms of any one of the MPL, the GPL or the LGPL.
 #
 # ***** END LICENSE BLOCK *****
+import functools
 import venusian
+from cornice.util import code2exception
+
+
+def _apply_validator(func, validator):
+    @functools.wraps(func)
+    def __apply(request):
+        res = validator(request)
+        if res is not None:
+            code, detail = res
+            raise code2exception(code, res)
+        return func(request)
+    return __apply
 
 
 class Service(object):
@@ -49,7 +62,6 @@ class Service(object):
             self.description = None
         self.acl_factory = kw.pop('acl', None)
         self.kw = kw
-        self._defined = False
 
     def __repr__(self):
         return "<%s Service at %s>" % (self.renderer.capitalize(),
@@ -58,20 +70,18 @@ class Service(object):
     def _define(self, config, method):
         # setup the services hash if it isn't already
         services = config.registry.setdefault('cornice_services', {})
+
+        # define the route if it isn't already
         if self.route_pattern not in services:
             services[self.route_pattern] = self
-
-        # registring the method
-        if method not in self.defined_methods:
-            self.defined_methods.append(method)
-
-        if not self._defined:
-            # defining the route
             route_kw = {}
             if self.acl_factory is not None:
                 route_kw["factory"] = self._make_route_factory()
             config.add_route(self.route_name, self.route_pattern, **route_kw)
-            self._defined = True
+
+        # registering the method
+        if method not in self.defined_methods:
+            self.defined_methods.append(method)
 
     def _make_route_factory(self):
         acl_factory = self.acl_factory
@@ -107,9 +117,22 @@ class Service(object):
         if 'renderer' not in api_kw:
             api_kw['renderer'] = self.renderer
 
+        validators = api_kw.pop('validator', [])
+        if not isinstance(validators, (list, tuple)):
+            validators = [validators]
+
         def _api(func):
             _api_kw = api_kw.copy()
             docstring = func.__doc__
+
+            for validator in validators:
+                func = _apply_validator(func, validator)
+
+                if validator.__doc__ is not None:
+                    if docstring is not None:
+                        docstring += validator.__doc__.strip()
+                    else:
+                        docstring = validator.__doc__.strip()
 
             def callback(context, name, ob):
                 config = context.config.with_package(info.module)
@@ -129,5 +152,6 @@ class Service(object):
                     kw['attr'] = func.__name__
 
             kw['_info'] = info.codeinfo   # fbo "action_method"
+
             return func
         return _api

@@ -4,3 +4,4 @@ simplejson
 docutils
 unittest2
 Sphinx
+webtest
