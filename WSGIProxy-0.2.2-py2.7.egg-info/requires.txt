@@ -1,0 +1,5 @@
+Paste
+
+[testing]
+MiniMock
+WebOb

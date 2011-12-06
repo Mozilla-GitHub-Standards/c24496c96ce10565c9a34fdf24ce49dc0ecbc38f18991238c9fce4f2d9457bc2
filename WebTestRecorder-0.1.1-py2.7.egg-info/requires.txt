@@ -1,0 +1,4 @@
+WebTest
+WebOb>=1.0
+Tempita
+WSGIProxy

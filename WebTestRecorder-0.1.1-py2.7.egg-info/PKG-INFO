@@ -1,0 +1,78 @@
+Metadata-Version: 1.0
+Name: WebTestRecorder
+Version: 0.1.1
+Summary: Record activity from a WSGI application, and generate WebTest tests from that record
+Home-page: http://pythonpaste.org/webtestrecorder/
+Author: Ian Bicking
+Author-email: ianb@colorstudy.com
+License: MIT
+Description: This package lets you record all the requests and responses of an
+        application, and then create a doctest from that.  (There's no real
+        reason it couldn't be a unit test... just haven't written that yet.)
+        
+        The recorder is a piece of middleware.  You use it like this::
+        
+            from webtestrecorder import record_file
+        
+            app = ... instantiate app ...
+            app = record_file(app, '/tmp/record.txt')
+        
+        All requests and responses will be written to this file.  You can read
+        them out like so::
+        
+            from webtestrecorder import get_records
+        
+            records = get_records(open('/tmp/record.txt', 'rb'))
+        
+        ``records`` is a list of requests, and each request has a
+        ``.response`` attribute.  You can then create a test::
+        
+            from webtestrecorder import write_doctest
+        
+            write_doctest(records, open('/tmp/doctest.txt', 'wb'))
+        
+        You can also use this like a shell script::
+        
+            $ python -m webtestrecorder < /tmp/record.txt > /tmp/doctest.txt
+        
+        Apache Logs
+        -----------
+        
+        You can read requests and responses from Apache logs via
+        `webtestrecorder.apachelog.parse_apache_log()`.  A constraint of
+        this is that request bodies won't be present, and responses just have
+        a status code and Content-Length, the Content-Type is unknown and the body
+        is padded with null bytes.
+        
+        Rerunning requests
+        ------------------
+        
+        The module `webtestrecorder.http` can take a list of
+        requests/responses and send them to a server, effectively replaying
+        requests.  This is also a command-line program usable like::
+        
+            $ python -m webtestrecorder.http apache_access.log --host localhost:8000
+        
+        You can filter or rewrite these requests with a custom filter
+        function.  See ``python -m webtestrecorder.http -h`` for more.
+        
+        News
+        ----
+        
+        0.1.1
+        ~~~~~
+        
+        * Packaging fixes
+        
+        0.1
+        ~~~
+        
+        * Initial release
+Keywords: wsgi testing unittest doctest webtest
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
+Classifier: Topic :: Software Development :: Testing

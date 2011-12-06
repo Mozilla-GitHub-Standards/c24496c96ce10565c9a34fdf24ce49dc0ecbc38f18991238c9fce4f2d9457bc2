@@ -1,0 +1,12 @@
+../tempita/_looper.py
+../tempita/__init__.py
+../tempita/compat3.py
+../tempita/_looper.pyc
+../tempita/__init__.pyc
+../tempita/compat3.pyc
+./
+top_level.txt
+PKG-INFO
+dependency_links.txt
+SOURCES.txt
+zip-safe

@@ -1,0 +1,15 @@
+CHANGES.txt
+MANIFEST.in
+README.txt
+WebTestPlus.egg-info/PKG-INFO
+WebTestPlus.egg-info/SOURCES.txt
+WebTestPlus.egg-info/dependency_links.txt
+WebTestPlus.egg-info/not-zip-safe
+WebTestPlus.egg-info/requires.txt
+WebTestPlus.egg-info/top_level.txt
+webtestplus/__init__.py
+webtestplus/client.py
+webtestplus/override.py
+webtestplus/recorder.py
+webtestplus/tests/__init__.py
+webtestplus/tests/test_webtestplus.py

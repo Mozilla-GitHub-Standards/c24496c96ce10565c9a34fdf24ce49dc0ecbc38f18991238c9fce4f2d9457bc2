@@ -1,0 +1,30 @@
+Metadata-Version: 1.0
+Name: WebTestPlus
+Version: 0.1
+Summary: Helper to test WSGI applications
+Home-page: https://github.com/mozilla-services/webtestplus
+Author: Mozilla Services
+Author-email: services-dev@mozilla.org
+License: UNKNOWN
+Description: ===========
+        WebTestPlus
+        ===========
+        
+        XXX explain the goal/intent here
+        
+        WebTestPlus provides two things:
+        
+        - a WSGI testing middleware
+        - an extension to WebTest to test an application using the middleware
+        
+        XXX describe the protocol
+        
+        XXX demo a session with TestAppPlus
+        
+        
+        
+        
+Keywords: web webtest test
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
