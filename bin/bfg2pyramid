@@ -15,6 +15,7 @@ if not getattr(sys, 'real_prefix', None):
             sys.path.remove(item)
     # Put our entries first
     sys.path[:0] = new_sys_path
+
 # EASY-INSTALL-ENTRY-SCRIPT: 'pyramid==1.2.1','console_scripts','bfg2pyramid'
 __requires__ = 'pyramid==1.2.1'
 import sys
