@@ -1,7 +1,23 @@
-#!/home/ianb/src/fxshare/appsync/build-env/bin/python2.7
+#!/usr/bin/env python2.7
+import sys, os
+base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Only do this if we're not in a virtualenv already
+if not getattr(sys, 'real_prefix', None):
+    # Put our entries first
+    prev_sys_path = list(sys.path)
+    import site
+    site.addsitedir(base)
+    new_sys_path = []
+    for item in list(sys.path):
+        if item not in prev_sys_path:
+            new_sys_path.append(item)
+            sys.path.remove(item)
+    sys.path[:0] = new_sys_path
+
 # EASY-INSTALL-ENTRY-SCRIPT: 'nose==1.1.2','console_scripts','nosetests'
 __requires__ = 'nose==1.1.2'
 import sys
+
 from pkg_resources import load_entry_point
 
 if __name__ == '__main__':
