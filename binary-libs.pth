@@ -1,1 +1,2 @@
-./binary-libs
+import sys, site; p = os.path.join(sys._getframe(1).f_locals['sitedir'], 'binary-libs'); site.addsitedir(p)
+
