@@ -1,0 +1,3 @@
+[submodule "sauropod"]
+	path = sauropod
+	url = https://github.com/mozilla/sauropod.git
