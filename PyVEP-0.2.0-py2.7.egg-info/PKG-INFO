@@ -1,0 +1,72 @@
+Metadata-Version: 1.0
+Name: PyVEP
+Version: 0.2.0
+Summary: Python library for the Verified Email Protocol
+Home-page: https://github.com/mozilla/PyVEP
+Author: Mozilla Identity Team
+Author-email: dev-identity@lists.mozilla.org
+License: UNKNOWN
+Description: =======================================================
+        PyVEP: a python library for the Verified Email Protocol
+        =======================================================
+        
+        This is a python client library for the Verified Email Protocol, a.k.a
+        Mozilla's BrowserID project.  See here for details:
+        
+            https://wiki.mozilla.org/Identity/Verified_Email_Protocol
+        
+        And see here for how to integrate it into your website:
+        
+            https://browserid.org/
+        
+        To just get something stable and working, it's currently recommended that you
+        use the browserid.org remote verifier service to check your assertions. Do
+        so like this::
+        
+            >>> verifier = vep.RemoteVerifier()
+            >>> data = verifier.verify(BROWSERIDASSERTION, "http://mysite.com")
+            >>> print data["email"]
+            "test@example.com"
+        
+        
+        For improved performance, or if you just want to live on the bleeding edge,
+        you can perform verification locally like so::
+        
+            >>> verifier = vep.LocalVerifier()
+            >>> data = verifier.verify(BROWSERIDASSERTION, "http://mysite.com")
+            >>> print data["email"]
+            "test@example.com"
+        
+        As the Verified Email Protocol gets locked down more firmly, using the local
+        verifier will become the preferred method of checking VEP identity assertions.
+        
+        
+        0.2.0 - 2011-12-07
+        ==================
+        
+         * do more validation of the assertion before checking the certificates,
+           to avoid expensive crypto ops for things we know to be invalid.
+         * implement DummyVerifier class to aid in testing, both of this package
+           and of packages that are using PyVEP.
+         * add exception hierarchy in vep.errors, so that calling code can easily
+           tell why verification failed.
+        
+        
+        0.1.1 - 2011-12-01
+        ==================
+        
+         * add "diresworb.org" to default list of trusted secondaries.
+         * implement additional signature algorithms.
+         * if "hostname/.well-known/host-meta" gives a 404, fall back to "hostname/pk"
+           to find the public key.
+        
+        
+        0.1.0 - 2011-11-23
+        ==================
+        
+         * initial release.
+        
+        
+Keywords: authentication vep browserid login email
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
