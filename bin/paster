@@ -2,10 +2,11 @@
 # This implements something like virtualenv-style activation whenever
 # you use the script:
 import sys, os
-base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.realpath(os.path.dirname(os.path.abspath(__file__))))
 # Only do this if we're not in a virtualenv already
 if not getattr(sys, 'real_prefix', None):
     prev_sys_path = list(sys.path)
+    print 'adding', base
     import site
     site.addsitedir(base)
     new_sys_path = []
@@ -14,6 +15,7 @@ if not getattr(sys, 'real_prefix', None):
             new_sys_path.append(item)
             sys.path.remove(item)
     # Put our entries first
+    print new_sys_path
     sys.path[:0] = new_sys_path
 # EASY-INSTALL-ENTRY-SCRIPT: 'PasteScript==1.7.4.2','console_scripts','paster'
 __requires__ = 'PasteScript==1.7.4.2'

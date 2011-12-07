@@ -2,7 +2,7 @@
 # This implements something like virtualenv-style activation whenever
 # you use the script:
 import sys, os
-base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.realpath(os.path.dirname(os.path.abspath(__file__))))
 # Only do this if we're not in a virtualenv already
 if not getattr(sys, 'real_prefix', None):
     prev_sys_path = list(sys.path)

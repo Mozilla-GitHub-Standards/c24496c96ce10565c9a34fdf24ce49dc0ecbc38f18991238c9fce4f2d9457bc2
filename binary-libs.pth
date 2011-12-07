@@ -1,1 +1,1 @@
-import site, os; site.addsitedir(os.path.join(os.path.dirname(__file__), 'site-packages/binary-libs'))
+./binary-libs

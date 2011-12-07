@@ -9,7 +9,7 @@ new_text = """#!/usr/bin/env python
 # This implements something like virtualenv-style activation whenever
 # you use the script:
 import sys, os
-base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.realpath(os.path.dirname(os.path.abspath(__file__))))
 # Only do this if we're not in a virtualenv already
 if not getattr(sys, 'real_prefix', None):
     prev_sys_path = list(sys.path)
@@ -22,6 +22,7 @@ if not getattr(sys, 'real_prefix', None):
             sys.path.remove(item)
     # Put our entries first
     sys.path[:0] = new_sys_path
+
 """
 
 SKIP_NAMES = [
@@ -43,7 +44,7 @@ def main():
                 print '%s: not a #! script' % name
             continue
         lines = content.splitlines(True)
-        if lines[0].startswith('#!/usr/bin/env'):
+        if lines[0].startswith('#!/usr/bin/env') and not os.environ.get('FORCE'):
             continue
         if 'python' not in lines[0]:
             print '%s: not a python script' % name
