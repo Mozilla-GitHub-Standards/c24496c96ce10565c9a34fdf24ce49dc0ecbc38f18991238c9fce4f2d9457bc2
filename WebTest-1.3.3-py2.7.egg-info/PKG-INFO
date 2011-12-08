@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: WebTest
-Version: 1.3.2
+Version: 1.3.3
 Summary: Helper to test WSGI applications
 Home-page: http://webtest.pythonpaste.org/
 Author: Gael Pasgrimaud
