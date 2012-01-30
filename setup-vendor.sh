@@ -37,7 +37,7 @@ fi
 cd $basedir
 echo "Recreating virtualenv environment"
 rm -rf build-env
-rm -rf vendor/setuptools-*.egg vendor/pip-*.egg
+rm -rf vendor/setuptools-*.egg vendor/pip-*.egg vendor/setuptools.pth vendor/distribute-*.egg
 virtualenv -q --python python$pyversion --no-site-packages build-env
 # Move the default site-packages out of the way
 mv build-env/lib/python$pyversion/site-packages/ build-env/lib/python$pyversion/orig-site-packages
